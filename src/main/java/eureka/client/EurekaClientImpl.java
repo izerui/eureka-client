@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient;
 /**
  * Created by serv on 16/9/3.
  */
-class EurekaClientImpl implements EurekaClient {
+public class EurekaClientImpl implements EurekaClient {
 
     private String eurekaServer;
     private OkHttpClient httpClient;
