@@ -1,21 +1,17 @@
 package eureka.client;
 
-import okhttp3.OkHttpClient;
-
 /**
  * Created by serv on 16/9/3.
  */
 public class EurekaClientImpl implements EurekaClient {
 
     private String eurekaServer;
-    private OkHttpClient httpClient;
 
     public EurekaClientImpl(String eurekaServer) {
         if(eurekaServer.endsWith("/")){
             eurekaServer = eurekaServer.substring(0,eurekaServer.length()-1);
         }
         this.eurekaServer = eurekaServer;
-        this.httpClient = new OkHttpClient();
     }
 
 
