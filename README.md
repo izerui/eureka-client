@@ -22,14 +22,14 @@
 <dependency>
     <groupId>com.github.izerui</groupId>
     <artifactId>eureka-client</artifactId>
-    <version>1.0.2.RELEASE</version>
+    <version>1.0.3.RELEASE</version>
 </dependency>
 ```
 
 ### usage
 
 ```
-EurekaClient client = new EurekaClientImpl("http://192.168.1.238:3030/");
+EurekaClient client = new EurekaClientImpl("http://192.168.1.238:3030/eureka/");
 client.registerInstance(APPID,PAYLOAD);
 // ... other api
 ```

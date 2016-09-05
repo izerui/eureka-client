@@ -12,7 +12,7 @@ public class EurekaTests {
 
     @Before
     public void init(){
-        client = new EurekaClientImpl("http://localhost:3030/");
+        client = new EurekaClientImpl("http://localhost:3030/eureka/");
     }
 
     @Test
