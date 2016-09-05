@@ -22,7 +22,7 @@
 <dependency>
     <groupId>com.github.izerui</groupId>
     <artifactId>eureka-client</artifactId>
-    <version>1.0.1.RELEASE</version>
+    <version>1.0.2.RELEASE</version>
 </dependency>
 ```
 
