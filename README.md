@@ -33,3 +33,7 @@ EurekaClient client = new EurekaClientImpl("http://192.168.1.238:3030/eureka/");
 client.registerInstance(APPID,PAYLOAD);
 // ... other api
 ```
+
+### see
+
+> https://github.com/Netflix/eureka/wiki/Eureka-REST-operations
