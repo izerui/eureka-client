@@ -1,5 +1,5 @@
 group 'com.github.izerui'
-version '1.0.1.RELEASE'
+version '1.0.3.RELEASE'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -32,9 +32,9 @@ uploadArchives {
             repository(url: "http://192.168.1.235:8081/repository/maven-releases/") {
                 authentication(userName: "admin", password: "admin123")
             }
-            pom.version = "$project.version"
-            pom.artifactId = "$project.name"
-            pom.groupId = "$project.group"
+            pom.version = "1.0.3.RELEASE"
+            pom.artifactId = "eureka-client"
+            pom.groupId = "com.github.izerui"
         }
     }
 }
