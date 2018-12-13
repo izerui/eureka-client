@@ -1,5 +1,9 @@
 package eureka.client;
 
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.shared.Application;
+import com.netflix.discovery.shared.Applications;
+
 /**
  * Created by serv on 16/9/3.
  */
@@ -7,89 +11,100 @@ public interface EurekaClient {
 
     /**
      * 注册一个应用实例
-     * @param appId 应用id
-     * @param payload json或者xml
+     *
+     * @param instanceInfo 应用信息
      */
-    void registerInstance(String appId,String payload);
+    void registerInstance(InstanceInfo instanceInfo);
 
 
     /**
      * 删除一个实例
-     * @param appId 应用id
+     *
+     * @param appName    应用名
      * @param instanceId 实例id
      */
-    void deleteInstance(String appId,String instanceId);
+    void deleteInstance(String appName, String instanceId);
 
     /**
      * 发送一个应用实例心跳
-     * @param appId 应用id
+     *
+     * @param appName    应用名
      * @param instanceId 实例id
      */
-    void heartbeat(String appId,String instanceId);
+    void heartbeat(String appName, String instanceId);
 
     /**
-     * 列出所有实例
+     * 列出所有应用
+     *
      * @return json/xml
      */
-    String instances();
+    Applications applications();
 
     /**
      * 列出应用下的所有实例
-     * @param appId 应用id
+     *
+     * @param appName 应用名
      * @return json/xml
      */
-    String instances(String appId);
+    Application application(String appName);
 
     /**
      * 查询指定的实例
-     * @param appId 应用id
+     *
+     * @param appName    应用名
      * @param instanceId 实例id
      * @return json/xml
      */
-    String instance(String appId,String instanceId);
+    InstanceInfo instance(String appName, String instanceId);
 
     /**
      * 查询特定的实例
+     *
      * @param instanceId 实例id
      * @return json/xml
      */
-    String instance(String instanceId);
+    InstanceInfo instance(String instanceId);
 
     /**
      * 中止/失效一个实例
-     * @param appId 应用id
+     *
+     * @param appName    应用名
      * @param instanceId 实例id
      */
-    void outOfService(String appId,String instanceId);
+    void outOfService(String appName, String instanceId);
 
     /**
      * 恢复一个实例到指定状态
-     * @param appId 应用id
+     *
+     * @param appName    应用名
      * @param instanceId 实例id
-     * @param status json/xml
+     * @param status     json/xml
      */
-    void backInService(String appId, String instanceId, EurekaInstanceStatus status);
+    void backInService(String appName, String instanceId, EurekaInstanceStatus status);
 
     /**
      * 更新实例的元数据
-     * @param appId 应用id
+     *
+     * @param appName    应用名
      * @param instanceId 实例id
-     * @param key 键
-     * @param value 值
+     * @param key        键
+     * @param value      值
      */
-    void updateMetadata(String appId,String instanceId,String key,String value);
+    void updateMetadata(String appName, String instanceId, String key, String value);
 
     /**
      * 在一个特定的vip地址查询所有实例
+     *
      * @param vipAddress vip地址
      * @return json/xml
      */
-    String vips(String vipAddress);
+    Applications vips(String vipAddress);
 
     /**
      * 在一个特定的安全vip地址查询所有实例
+     *
      * @param svipAddress 安全的vip地址
      * @return json/xml
      */
-    String svips(String svipAddress);
+    Applications svips(String svipAddress);
 }

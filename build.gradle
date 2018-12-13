@@ -1,5 +1,5 @@
 group 'com.github.izerui'
-version '1.0.3.RELEASE'
+version '1.0.4.RELEASE'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -32,7 +32,7 @@ uploadArchives {
             repository(url: "http://192.168.1.235:8081/repository/maven-releases/") {
                 authentication(userName: "admin", password: "admin123")
             }
-            pom.version = "1.0.3.RELEASE"
+            pom.version = "1.0.4.RELEASE"
             pom.artifactId = "eureka-client"
             pom.groupId = "com.github.izerui"
         }
@@ -42,6 +42,8 @@ uploadArchives {
 
 dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.netflix.eureka:eureka-client:1.9.3'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.7'
     testCompile 'junit:junit:4.12'
 }
 

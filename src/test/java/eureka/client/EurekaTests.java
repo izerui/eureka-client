@@ -1,5 +1,9 @@
 package eureka.client;
 
+import com.netflix.appinfo.DataCenterInfo;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.shared.Application;
+import com.netflix.discovery.shared.Applications;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +16,21 @@ public class EurekaTests {
 
     @Before
     public void init(){
-        client = new EurekaClientImpl("http://localhost:3030/eureka/");
+        client = new EurekaClientImpl("http://192.168.1.236:3030/eureka/");
+    }
+
+    @Test
+    public void registerTest(){
+        InstanceInfo instanceInfo = InstanceInfo.Builder.newBuilder()
+                .setInstanceId("99999")
+                .setAppName("99999")
+                .setIPAddr("127.0.0.1")
+                .setHostName("127.0.0.1")
+                .setPort(8832)
+                .setVIPAddress("aaa")
+                .setDataCenterInfo(() -> DataCenterInfo.Name.MyOwn)
+                .build();
+        client.registerInstance(instanceInfo);
     }
 
     @Test
@@ -21,15 +39,34 @@ public class EurekaTests {
     }
 
     @Test
-    public void instancesTest(){
-        String instances = client.instances();
-        System.out.println(instances);
+    public void applicationsTest(){
+        Applications applications = client.applications();
+        for (Application application : applications.getRegisteredApplications()) {
+            System.out.println(application);
+        }
     }
 
     @Test
-    public void instancesAppidTest(){
-        String instances = client.instances("EUREKA-SERVER");
-        System.out.println(instances);
+    public void applicationTest(){
+        Application application = client.application("SALES-API");
+        for (InstanceInfo instance : application.getInstances()) {
+            System.out.println(instance.getId());
+        }
+    }
+
+    @Test
+    public void instanceTest(){
+        InstanceInfo instance = client.instance("dev181:sales-api:50003");
+        System.out.println(instance.getId());
+        System.out.println(instance.getAppName());
+    }
+
+    @Test
+    public void updateMetadataTest(){
+        InstanceInfo instance = client.instance("dev181:sales-api:50003");
+        client.updateMetadata(instance.getAppName(),instance.getInstanceId(),"ff","fsss");
+        InstanceInfo result = client.instance("dev181:sales-api:50003");
+        System.out.println(result.getMetadata());
     }
 
     @Test
@@ -51,20 +88,14 @@ public class EurekaTests {
     }
 
     @Test
-    public void updateMetadataTest(){
-        client.updateMetadata("EUREKA-SERVER","192.168.0.107:eureka-server:3030","ade","123");
-        instancesAppidTest();
-    }
-
-    @Test
     public void vipsTest(){
-        String vips = client.vips("eureka-server");
+        Applications vips = client.vips("192.168.1.236:3030");
         System.out.println(vips);
     }
 
     @Test
     public void svipsTest(){
-        String svips = client.svips("eureka-server");
+        Applications svips = client.svips("eureka-server");
         System.out.println(svips);
     }
 }
