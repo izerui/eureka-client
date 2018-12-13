@@ -37,3 +37,5 @@ client.registerInstance(APPID,PAYLOAD);
 ### see
 
 > https://github.com/Netflix/eureka/wiki/Eureka-REST-operations
+
+note: Before changing the state, you need to out of service !!!
