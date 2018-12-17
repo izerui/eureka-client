@@ -1,5 +1,5 @@
 group 'com.github.izerui'
-version '1.0.4.RELEASE'
+version '1.1.0.RELEASE'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -22,6 +22,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 artifacts {
+    archives jar
     archives sourcesJar
     archives javadocJar
 }
@@ -29,10 +30,10 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://192.168.1.235:8081/repository/maven-releases/") {
+            repository(url: "http://192.168.1.235:8081/nexus/content/repositories/releases/") {
                 authentication(userName: "admin", password: "admin123")
             }
-            pom.version = "1.0.4.RELEASE"
+            pom.version = "1.1.0.RELEASE"
             pom.artifactId = "eureka-client"
             pom.groupId = "com.github.izerui"
         }
