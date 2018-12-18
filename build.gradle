@@ -41,12 +41,12 @@ artifacts {
 
 
 dependencies {
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile('com.netflix.eureka:eureka-client:1.9.3') {
+    compile 'com.squareup.okhttp3:okhttp:3.+'
+    compile('com.netflix.eureka:eureka-client:1.+') {
         exclude module: '*'
     }
-    compile 'org.slf4j:slf4j-api:1.7.25'
-    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.7'
+    compile 'org.slf4j:slf4j-api:1.+'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.+'
     testCompile 'junit:junit:4.12'
 }
 
